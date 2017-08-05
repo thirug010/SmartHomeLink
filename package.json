@@ -1,0 +1,14 @@
+{
+  "name": "smart-home-link-webhook",
+  "version": "1.0.0",
+  "description": "Webhook for SmartHomeLink",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Thiru G",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4"
+  }
+}
