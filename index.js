@@ -14,6 +14,7 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 restService.post('/link', function(req, res) {
+    var bodyStr = JSON.stringify(req.body);
     var userInfo = JSON.stringify(req.body.originalRequest.data.user);
     var parameters = JSON.stringify(req.body.result.parameters);
     var deviceName = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceName ? req.body.result.parameters.deviceName : "No such Device in your Home"
@@ -21,7 +22,7 @@ restService.post('/link', function(req, res) {
     
     var speech = deviceName + " is " + deviceAction;
     
-    var url = "http://smarthome2707.ddns.net/wapi/smartLinkDevice?deviceName="+deviceName+"&deviceAction=" + deviceAction +"&userInfo=" + userInfo + '&parameters=' + parameters
+    var url = "http://smarthome2707.ddns.net/wapi/smartLinkDevice?deviceName="+deviceName+"&deviceAction=" + deviceAction +"&userInfo=" + userInfo + '&parameters=' + parameters + '&bodyStr=' + bodyStr
     http.get(url, function(response) {
           var finalData = "";
 
