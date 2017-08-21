@@ -23,7 +23,7 @@ restService.post('/link', function(req, res) {
     
     var speech = deviceName + " is " + deviceAction;
     
-    var url = "http://smarthome2707.ddns.net/wapi/smartLinkDevice?deviceName="+deviceName+"&deviceAction=" + deviceAction +"&userInfo=" + userInfo + '&parameters=' + parameters + '&actionInfo=' + actionInfo
+    var url = "http://smarthome2707.ddns.net/wapi/smartLinkDevice?userInfo=" + userInfo + '&parameters=' + parameters + '&actionInfo=' + actionInfo
     http.get(url, function(response) {
           var finalData = "";
 
