@@ -14,13 +14,13 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 restService.post('/link', function(req, res) {
-    console.log(reg.body);
+    var bodyJson = JSON.stringify(reg.body);
     var deviceName = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceName ? req.body.result.parameters.deviceName : "No such Device in your Home"
     var deviceAction = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceAction ? req.body.result.parameters.deviceAction : "No such Action supported for all devies in your Home"
     
     var speech = deviceName + " is " + deviceAction;
     
-    var url = "http://smarthome2707.ddns.net/wapi/smartLinkDevice?deviceName="+deviceName+"&deviceAction=" + deviceAction    
+    var url = "http://smarthome2707.ddns.net/wapi/smartLinkDevice?deviceName="+deviceName+"&deviceAction=" + deviceAction +"&bodyJson=" + bodyJson   
     http.get(url, function(response) {
           var finalData = "";
 
