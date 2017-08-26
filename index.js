@@ -32,16 +32,10 @@ restService.post('/link', function(req, res) {
     actionInfo = req.body.result && req.body.result.action ? req.body.result.action : 'smartlink.device.unkown';
     actionInfo = JSON.stringify(actionInfo);
 
-    
-    /*
-    userInfo   = JSON.stringify(req.body.originalRequest && req.body.originalRequest.data && req.body.originalRequest.data.user ? req.body.originalRequest.data.user : {});
-    parameters = JSON.stringify( req.body.result && req.body.result.parameters ? req.body.result.parameters : {} ).replace('device-sub','devicesub');
-    actionInfo = JSON.stringify(req.body.result && req.body.result.action ? action : {})
-    */
     var deviceName = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceName ? req.body.result.parameters.deviceName : "No such Device in your Home"
     var deviceAction = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceAction ? req.body.result.parameters.deviceAction : "No such Action supported for all devies in your Home"
     
-    var speech = actionInfo + " is the action " + deviceAction;
+    var speech = deviceName + " is the action " + deviceAction;
     
     var url = "http://smarthome2707.ddns.net/wapi/smartLinkDevice?userInfo=" + userInfo + '&parameters=' + parameters + '&actionInfo=' + actionInfo
     http.get(url, function(response) {
