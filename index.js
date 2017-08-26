@@ -18,7 +18,7 @@ restService.get('/linkget', function (req, res)
   res.send('Get Response')
 });
 
-restService.post('/link', function(req, res) {
+restService.get('/link', function(req, res) {
     
     var userInfo   = JSON.stringify(req.body.originalRequest && req.body.originalRequest.data && req.body.originalRequest.data.user ? req.body.originalRequest.data.user : {});
     var parameters = JSON.stringify( req.body.result && req.body.result.parameters ? req.body.result.parameters : {} ).replace('device-sub','devicesub');
