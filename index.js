@@ -37,7 +37,7 @@ restService.post('/link', function(req, res) {
     
     var speech = "Action completed";
     
-    var url = "http://smarthome2707.ddns.net/wapi/smartLinkDevice?userInfo=" + userInfo + '&parameters=' + parameters + '&actionInfo=' + actionInfo
+    var url = "http://smarthome2707.ddns.net/wapi/smartLinkDevice?userInfo=" + userInfo + '&parameters=' + parameters + '&actionInfo=' + actionInfo + '&t = ' + (new Date()).toLocaleTimeString()
     http.get(url, function(response) {
           var finalData = "";
 
