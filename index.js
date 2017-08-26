@@ -30,7 +30,7 @@ restService.post('/link', function(req, res) {
     var deviceName = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceName ? req.body.result.parameters.deviceName : "No such Device in your Home"
     var deviceAction = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceAction ? req.body.result.parameters.deviceAction : "No such Action supported for all devies in your Home"
     
-    var speech = userInfo + " is " + deviceAction;
+    var speech = userInfo + " is the data " + deviceAction;
     
     var url = "http://smarthome2707.ddns.net/wapi/smartLinkDevice?userInfo=" + userInfo + '&parameters=' + parameters + '&actionInfo=' + actionInfo
     http.get(url, function(response) {
