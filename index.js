@@ -19,9 +19,9 @@ restService.get('/linkget', function (req, res)
 });
 
 restService.post('/link', function(req, res) { 
-    var userInfo = "";
     var parameters = "";
     var actionInfo = "";
+    var userInfo   = req.body.originalRequest && req.body.originalRequest.data && req.body.originalRequest.data.user ? req.body.originalRequest.data.user:'';
     /*
     userInfo   = JSON.stringify(req.body.originalRequest && req.body.originalRequest.data && req.body.originalRequest.data.user ? req.body.originalRequest.data.user : {});
     parameters = JSON.stringify( req.body.result && req.body.result.parameters ? req.body.result.parameters : {} ).replace('device-sub','devicesub');
@@ -30,7 +30,7 @@ restService.post('/link', function(req, res) {
     var deviceName = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceName ? req.body.result.parameters.deviceName : "No such Device in your Home"
     var deviceAction = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceAction ? req.body.result.parameters.deviceAction : "No such Action supported for all devies in your Home"
     
-    var speech = deviceName + " is " + deviceAction;
+    var speech = userInfo + " is " + deviceAction;
     
     var url = "http://smarthome2707.ddns.net/wapi/smartLinkDevice?userInfo=" + userInfo + '&parameters=' + parameters + '&actionInfo=' + actionInfo
     http.get(url, function(response) {
