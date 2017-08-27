@@ -157,17 +157,17 @@ restService.post('/link', function(req, res) {
     var deviceAction = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceAction ? req.body.result.parameters.deviceAction : "No such Action supported for all devies in your Home"
     
     var devInfo = SmartLink.getSpecificDevice(userInfo_sr.userId,parameters_sr);
-    var actionInfo = SmartLink.getActionInfo(actionInfo_sr);   
+    var actInfo = SmartLink.getActionInfo(actionInfo_sr);   
     var speech ="";
     
-    if(devInfo.found && actionInfo.found)
+    if(devInfo.found && actInfo.found)
         {
-            speech = devInfo.message + ' is ' + actionInfo.message;
+            speech = devInfo.message + ' is ' + actInfo.message;
         }
     
-    else if(devInfo.found && !actionInfo.found)
+    else if(devInfo.found && !actInfo.found)
         {
-            speech = actionInfo.message + ' for ' + devInfo.message + ', please try again with valid action';
+            speech = actInfo.message + ' for ' + devInfo.message + ', please try again with valid action';
         }
     else if (!devInfo.found)
         {
