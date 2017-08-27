@@ -123,37 +123,54 @@ SmartLink.getSpecificDevice = function(smartLinkID, paramters)
         }
 } 
 
+if (!String.prototype.replaceAll) {
+    String.prototype.replaceAll = function(search, replacement) {
+        var target = this;
+        return target.replace(new RegExp(search, 'g'), replacement);
+    };
+}
+
+
 
 restService.post('/link', function(req, res) { 
     var parameters = "";
     var actionInfo = "";
+	
+    var parameters_sr = {};
+    var actionInfo_sr = {};
+    var userInfo_sr = {};
+	
     var userInfo   = req.body.originalRequest && req.body.originalRequest.data && req.body.originalRequest.data.user ? req.body.originalRequest.data.user:{};
+    userInfo_sr = userInfo;
     userInfo = JSON.stringify(userInfo);
     
     var param = {all:'', room : '' , device : ''};
     parameters = req.body.result && req.body.result.parameters ? req.body.result.parameters : param;
+    parameters_sr = parameters_sr;
     parameters = JSON.stringify(parameters);
     parameters = parameters.replace('device-sub','devicesub');
     
     actionInfo = req.body.result && req.body.result.action ? req.body.result.action : 'smartlink.device.unkown';
+    actionInfo_sr = actionInfo;
     actionInfo = JSON.stringify(actionInfo);
 
     var deviceName = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceName ? req.body.result.parameters.deviceName : "No such Device in your Home"
     var deviceAction = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceAction ? req.body.result.parameters.deviceAction : "No such Action supported for all devies in your Home"
     
-    var speech = "";
-    var devInfo = SmartLink.getLinkList(userInfo.userId,parameters);
-    var actionInfo = SmartLink.getActionInfo(actionInfo);
-
+    var devInfo = SmartLink.getSpecificDevice(userInfo_sr.userId,parameters_sr);
+    var actionInfo = SmartLink.getActionInfo(actionInfo_sr);   
+    var speech ="";
+    
     if(devInfo.found && actionInfo.found)
         {
             speech = devInfo.message + ' is ' + actionInfo.message;
         }
+    
     else if(devInfo.found && !actionInfo.found)
         {
-            speech = actionInfo.message + ' for ' + devInfo.message;
+            speech = actionInfo.message + ' for ' + devInfo.message + ', please try again with valid action';
         }
-    else if (!deviceInfo.found)
+    else if (!devInfo.found)
         {
             speech = devInfo.message;
         } 
