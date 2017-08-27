@@ -146,7 +146,7 @@ restService.post('/link', function(req, res) {
     
     var param = {all:'', room : '' , device : ''};
     parameters = req.body.result && req.body.result.parameters ? req.body.result.parameters : param;
-    parameters_sr = parameters_sr;
+    parameters_sr = parameters;
     parameters = JSON.stringify(parameters);
     parameters = parameters.replace('device-sub','devicesub');
     
