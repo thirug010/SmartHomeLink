@@ -110,16 +110,16 @@ SmartLink.getSpecificDevice = function(smartLinkID, paramters)
         }
     else if (roomOnly)
         {
-            return { deviceInfo : dev, found : false, message : 'no device called '+ paramters.device + ' found in the ' + paramters.room +' please try again with valid device name'};
+            return { deviceInfo : dev, found : false, message : 'invalid device, please try again with valid device name'};
         }
     else if (devOnly)
         
         {
-            return { deviceInfo : dev, found : false, message : 'no room called ' + paramters.room + ' configured in the user profile, please try again with valid room'};
+            return { deviceInfo : dev, found : false, message : 'invalid room, please try again with valid room'};
         }
     else
         {
-            return { deviceInfo : dev, found : false, message : 'no room ' + paramters.room + ' or no device '+paramters.device+' configured in the user profile, please try again'};
+            return { deviceInfo : dev, found : false, message : 'invalid room and device, please try again'};
         }
 } 
 
