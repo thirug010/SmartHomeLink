@@ -152,7 +152,6 @@ restService.post('/link', function(req, res) {
     
     actionInfo = req.body.result && req.body.result.action ? req.body.result.action : 'smartlink.device.unkown';
     actionInfo_sr = actionInfo;
-    actionInfo = JSON.stringify(actionInfo);
 
     var deviceName = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceName ? req.body.result.parameters.deviceName : "No such Device in your Home"
     var deviceAction = req.body.result && req.body.result.parameters && req.body.result.parameters.deviceAction ? req.body.result.parameters.deviceAction : "No such Action supported for all devies in your Home"
